@@ -1,9 +1,9 @@
 # aplicacion.py
-from gestor_tareas import GestorTareas # Importa la clase para la lista de tareas
-from historial import Historial # Importa la clase para la pila de historial
-from cola_urgentes import ColaUrgentes # Importa la clase para la cola de tareas urgentes
-from nodo import Nodo # Importa la clase para la organizacion en arboles
-from accion import Accion # Importa la clase para las acciones del historial
+from gestor_tareas import GestorTareas # Aqui se importa la clase para la lista de tareas
+from historial import Historial # Aqui se importa la clase para la pila de historial
+from cola_urgentes import ColaUrgentes # Con este importamos la clase para la cola de tareas urgentes
+from nodo import Nodo # Aqui importa la clase para la organizacion en arboles
+from accion import Accion # Aqui importa la clase para las acciones del historial
 from tarea import Tarea
 from colorama import Fore, Style, init
 import json
