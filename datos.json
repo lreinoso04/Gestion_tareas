@@ -1,0 +1,45 @@
+{
+    "tareas": [
+        {
+            "id": 1,
+            "titulo": "Reunion",
+            "descripcion": "Preparar diapositivas",
+            "prioridad": 4,
+            "fecha_vencimiento": "2023-12-01"
+        },
+        {
+            "id": 2,
+            "titulo": "Trabajo final",
+            "descripcion": "Realizar el trabajo antes del lunes",
+            "prioridad": 5,
+            "fecha_vencimiento": "2025-12-27"
+        },
+        {
+            "id": 3,
+            "titulo": "Programa de tareas",
+            "descripcion": "Trabajo final",
+            "prioridad": 4,
+            "fecha_vencimiento": "2025-04-06"
+        }
+    ],
+    "proximo_id": 4,
+    "arbol": {
+        "nombre": "Raiz",
+        "tareas": [],
+        "hijos": [
+            {
+                "nombre": "Trabajo",
+                "tareas": [
+                    {
+                        "id": 1,
+                        "titulo": "Reunion",
+                        "descripcion": "Preparar diapositivas",
+                        "prioridad": 4,
+                        "fecha_vencimiento": "2023-12-01"
+                    }
+                ],
+                "hijos": []
+            }
+        ]
+    }
+}
