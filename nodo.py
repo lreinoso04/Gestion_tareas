@@ -6,7 +6,7 @@ class Nodo:
     def __init__(self, nombre):
         self.nombre = nombre
         self.hijos = [] # Lista de nodos hijo
-        self.tareas = [] # Lista de tareas asignadas para este nodo
+        self.tareas = [] # Lista de tareas asignadas en este nodo
 
     def agregar_hijo(self, nombre):
         hijo = Nodo(nombre)
