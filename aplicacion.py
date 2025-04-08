@@ -12,6 +12,7 @@ from colorama import init
 import json
 import os
 from config import *
+from datetime import datetime  # Importamos datetime aqui
 
 class Aplicacion:
     """
@@ -205,7 +206,7 @@ class Aplicacion:
                     return
             if fecha_vencimiento_str:
                 try:
-                    datetime.strptime(fecha_vencimiento_str, "%Y-%m-%d")
+                    datetime.strptime(fecha_vencimiento_str, "%Y-%m-%d") # Linea 147 corregida
                     kwargs['fecha_vencimiento'] = fecha_vencimiento_str
                 except ValueError:
                     print(MENSAJE_FORMATO_FECHA_INVALIDO)

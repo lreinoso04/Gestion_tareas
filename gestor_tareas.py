@@ -4,6 +4,7 @@ Modulo para la clase GestorTareas, que gestiona la lista de tareas pendientes.
 """
 from tarea import Tarea, Prioridad
 from config import COLOR_CYAN, COLOR_YELLOW, STYLE_RESET_ALL
+from datetime import datetime  # Importamos datetime aqui
 
 class GestorTareas:
     """
@@ -76,7 +77,7 @@ class GestorTareas:
                                 continue
                         elif attr == 'fecha_vencimiento':
                             try:
-                                datetime.strptime(nuevo_valor, "%Y-%m-%d")
+                                datetime.strptime(nuevo_valor, "%Y-%m-%d") # Linea 79 corregida
                             except ValueError:
                                 print(f"{COLOR_YELLOW}Advertencia: Formato de fecha '{nuevo_valor}' invalido. Se mantendra la fecha anterior.{STYLE_RESET_ALL}")
                                 continue
