@@ -40,14 +40,14 @@ class Aplicacion:
     def menu(self):
         while True:
             print(f"{Fore.CYAN}==================== {Style.BRIGHT}Gestor de Tareas{Style.RESET_ALL} ===================={Style.RESET_ALL}")
-            print(f"{Fore.YELLOW}   1. Agregar tarea{Style.RESET_ALL}") # Permite agregar tareas (lista)
-            print(f"{Fore.YELLOW}   2. Eliminar tarea{Style.RESET_ALL}") # Permite eliminar tareas (lista)
-            print(f"{Fore.YELLOW}   3. Modificar tarea{Style.RESET_ALL}") # Permite modificar tareas (lista)
+            print(f"{Fore.YELLOW}   1. Agregar tarea{Style.RESET_ALL}") # Permite agregar las tareas (lista)
+            print(f"{Fore.YELLOW}   2. Eliminar tarea{Style.RESET_ALL}") # Permite eliminar las tareas (lista)
+            print(f"{Fore.YELLOW}   3. Modificar tarea{Style.RESET_ALL}") # Permite modificar las tareas (lista)
             print(f"{Fore.YELLOW}   4. Mostrar lista de tareas{Style.RESET_ALL}") # Muestra la lista de tareas (lista)
             print(f"{Fore.YELLOW}   5. Deshacer ultima accion{Style.RESET_ALL}") # Deshace la ultima accion (pilas)
             print(f"{Fore.YELLOW}   6. Rehacer accion deshecha{Style.RESET_ALL}") # Rehace la accion deshecha (pilas)
             print(f"{Fore.YELLOW}   7. Agregar tarea urgente{Style.RESET_ALL}") # Agrega tarea a la cola de urgentes (cola)
-            print(f"{Fore.YELLOW}   8. Procesar tarea urgente{Style.RESET_ALL}") # Procesa tarea de la cola de urgentes (cola)
+            print(f"{Fore.YELLOW}   8. Procesar tarea urgente{Style.RESET_ALL}") # Procesa la tarea de la cola de urgentes (cola)
             print(f"{Fore.YELLOW}   9. Crear categoria{Style.RESET_ALL}") # Permite crear categorias (arboles)
             print(f"{Fore.YELLOW}  10. Asignar tarea a categoria{Style.RESET_ALL}") # Permite asignar tarea a categoria (arboles)
             print(f"{Fore.YELLOW}  11. Mostrar arbol de categorias{Style.RESET_ALL}") # Muestra el arbol de categorias (arboles)
