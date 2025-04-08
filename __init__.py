@@ -1,2 +1,2 @@
 # __init__.py
-# Archivo vacio, comun en paquetes de Python
+# Este archivo marca el directorio como un paquete de Python.
