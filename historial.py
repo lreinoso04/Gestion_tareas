@@ -1,24 +1,27 @@
 # historial.py
+
 """
-Modulo para la clase Historial, que implementa el historial de acciones usando pilas.
+Modulo para la clase Historial, que implementa el historial de acciones usando pilas
 """
+
 from accion import Accion
-from config import COLOR_MAGENTA, COLOR_YELLOW, STYLE_RESET_ALL, MENSAJE_ACCION_DESHECHA, MENSAJE_NO_HAY_ACCIONES_DESHACER, MENSAJE_ACCION_REHECHA, MENSAJE_NO_HAY_ACCIONES_REHACER, COLOR_CYAN
+from config import MENSAJE_ACCION_DESHECHA, MENSAJE_NO_HAY_ACCIONES_DESHACER, MENSAJE_ACCION_REHECHA, MENSAJE_NO_HAY_ACCIONES_REHACER
 
 class Historial:
     """
-    Implementacion del historial de acciones usando pilas (para deshacer y rehacer).
+    Implementacion del historial de acciones usando pilas (para deshacer y rehacer)
     """
+
     def __init__(self):
         """
-        Inicializa el historial con dos pilas vacias: una para deshacer y otra para rehacer.
+        Inicializa el historial con dos pilas vacias
         """
-        self.pila_deshacer = []
-        self.pila_rehacer = []
+        self.pila_deshacer = []  # Pila para acciones a deshacer
+        self.pila_rehacer = []  # Pila para acciones a rehacer
 
     def registrar_accion(self, accion):
         """
-        Registra una nueva accion en la pila de deshacer y limpia la pila de rehacer.
+        Registra una nueva accion en la pila de deshacer y limpia la pila de rehacer
 
         Args:
             accion (Accion): La accion a registrar.
@@ -28,10 +31,10 @@ class Historial:
 
     def deshacer(self, gestor):
         """
-        Deshace la ultima accion realizada.
+        Deshace la ultima accion realizada
 
         Args:
-            gestor (GestorTareas): El gestor de tareas para aplicar la accion inversa.
+            gestor (GestorTareas): El gestor de tareas para aplicar la accion inversa
         """
         if self.pila_deshacer:
             accion = self.pila_deshacer.pop()
@@ -43,10 +46,10 @@ class Historial:
 
     def rehacer(self, gestor):
         """
-        Rehace la ultima accion deshecha.
+        Rehace la ultima accion deshecha
 
         Args:
-            gestor (GestorTareas): El gestor de tareas para aplicar la accion.
+            gestor (GestorTareas): El gestor de tareas para aplicar la accion
         """
         if self.pila_rehacer:
             accion = self.pila_rehacer.pop()

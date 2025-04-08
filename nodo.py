@@ -1,33 +1,36 @@
 # nodo.py
+
 """
-Modulo para la clase Nodo, que representa un nodo en la estructura de arbol para categorias.
+Modulo para la clase Nodo, que representa un nodo en la estructura de arbol para categorias
 """
-from config import COLOR_BLUE, COLOR_GREEN, STYLE_RESET_ALL, COLOR_CYAN
+
+from config import COLOR_BLUE, COLOR_GREEN, STYLE_RESET_ALL
 
 class Nodo:
     """
-    Clase para representar un nodo en la estructura de arbol para categorias.
+    Clase para representar un nodo en la estructura de arbol para categorias
     """
+
     def __init__(self, nombre):
         """
-        Inicializa un nuevo nodo con un nombre, una lista de hijos vacia y una lista de tareas vacia.
+        Inicializa un nuevo nodo con un nombre
 
         Args:
-            nombre (str): El nombre del nodo (categoria).
+            nombre (str): El nombre del nodo (categoria)
         """
         self.nombre = nombre
-        self.hijos = []
-        self.tareas = []
+        self.hijos = []  # Lista de nodos hijos
+        self.tareas = []  # Lista de tareas asignadas al nodo
 
     def agregar_hijo(self, nombre):
         """
-        Agrega un nuevo nodo hijo al nodo actual.
+        Agrega un nuevo nodo hijo
 
         Args:
-            nombre (str): El nombre del nuevo nodo hijo.
+            nombre (str): El nombre del nuevo nodo hijo
 
         Returns:
-            Nodo: El nuevo nodo hijo creado.
+            Nodo: El nuevo nodo hijo creado
         """
         hijo = Nodo(nombre)
         self.hijos.append(hijo)
@@ -35,17 +38,16 @@ class Nodo:
 
     def buscar_subnodo(self, ruta):
         """
-        Busca un subnodo dentro de este nodo basandose en una ruta.
+        Busca un subnodo por su ruta
 
         Args:
-            ruta (str): La ruta del subnodo a buscar, con los nombres de los nodos separados por '/'.
+            ruta (str): Ruta del subnodo (ejemplo: "Categoria1/Subcategoria")
 
         Returns:
-            Nodo: El subnodo encontrado, o None si la ruta no existe.
+            Nodo: El subnodo encontrado, o None si no existe
         """
         if not ruta:
             return self
-
         partes = ruta.split('/')
         actual = self
         for parte in partes:
@@ -61,19 +63,19 @@ class Nodo:
 
     def agregar_tarea(self, tarea):
         """
-        Agrega una tarea a la lista de tareas asignadas a este nodo.
+        Agrega una tarea al nodo
 
         Args:
-            tarea (Tarea): La tarea a agregar.
+            tarea (Tarea): La tarea a asignar
         """
         self.tareas.append(tarea)
 
     def mostrar(self, nivel=0):
         """
-        Muestra el nodo y sus hijos de forma recursiva, indicando el nivel de profundidad.
+        Muestra el nodo y sus hijos recursivamente
 
         Args:
-            nivel (int): El nivel de profundidad en el arbol (0 para el nodo raiz).
+            nivel (int): Nivel de profundidad en el arbol
         """
         print(f"{COLOR_BLUE}{'  ' * nivel}{self.nombre}{STYLE_RESET_ALL}")
         for tarea in self.tareas:
@@ -83,10 +85,10 @@ class Nodo:
 
     def a_dict(self):
         """
-        Convierte el nodo y su estructura (hijos y tareas) a un diccionario para su serializacion.
+        Convierte el nodo a un diccionario para serializacion
 
         Returns:
-            dict: Un diccionario que representa el nodo.
+            dict: Representacion del nodo en formato diccionario
         """
         return {
             "nombre": self.nombre,
@@ -97,14 +99,14 @@ class Nodo:
     @classmethod
     def desde_dict(cls, datos, lista_tareas):
         """
-        Crea un objeto Nodo desde un diccionario.
+        Crea un nodo desde un diccionario
 
         Args:
-            datos (dict): Un diccionario que representa el nodo.
-            lista_tareas (list): La lista completa de tareas gestionadas.
+            datos (dict): Diccionario con la estructura del nodo
+            lista_tareas (list): Lista de todas las tareas disponibles
 
         Returns:
-            Nodo: Un nuevo objeto Nodo.
+            Nodo: El nodo reconstruido
         """
         nodo = cls(datos["nombre"])
         for datos_tarea in datos["tareas"]:
