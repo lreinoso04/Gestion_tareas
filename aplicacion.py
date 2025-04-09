@@ -1,7 +1,8 @@
 # aplicacion.py
 
 """
-Modulo principal que contiene la clase Aplicacion para gestionar las tareas
+Modulo principal que
+contiene la clase Aplicacion para gestionar las tareas
 """
 
 from gestor_tareas import GestorTareas
@@ -18,7 +19,8 @@ from datetime import datetime
 
 class Aplicacion:
     """
-    Clase principal que gestiona la aplicacion de gestion de tareas
+    Clase
+    principal que gestiona la aplicacion de gestion de tareas
     """
 
     def __init__(self):
@@ -34,7 +36,8 @@ class Aplicacion:
 
     def guardar_datos(self):
         """
-        Guarda los datos de la aplicacion (tareas, proximo ID y estructura del arbol) en un archivo JSON
+        Guarda los datos de la aplicacion (tareas, proximo ID y estructura del
+        arbol) en un archivo JSON
         """
         datos = {
             "tareas": [tarea.a_dict() for tarea in self.gestor.tareas],
@@ -217,6 +220,7 @@ class Aplicacion:
                 except ValueError:
                     print(MENSAJE_PRIORIDAD_NO_NUMERO)
                     return
+
             if fecha_vencimiento:
                 try:
                     datetime.strptime(fecha_vencimiento, "%Y-%m-%d")
@@ -297,9 +301,33 @@ class Aplicacion:
         for hijo in nodo.hijos:
             self.mostrar_categorias_disponibles(hijo, nivel + 1)
 
+    def mostrar_rutas_categorias(self, nodo, ruta_actual="", nivel=0, rutas_con_indices=None):
+        """
+        Muestra las rutas de las categorias disponibles y las guarda en una lista con indices.
+
+        Args:
+            nodo (Nodo): El nodo actual a mostrar.
+            ruta_actual (str): Ruta acumulada hasta este nodo.
+            nivel (int): Nivel de profundidad en el arbol.
+            rutas_con_indices (list): Lista para guardar las rutas con sus indices.
+        """
+        if rutas_con_indices is None:
+            rutas_con_indices = []
+
+        if nivel > 0:
+            ruta = f"{ruta_actual}/{nodo.nombre}" if ruta_actual else nodo.nombre
+            print(f"{len(rutas_con_indices) + 1}. {'  ' * nivel}- {COLOR_BLUE}{ruta}{STYLE_RESET_ALL}")
+            rutas_con_indices.append(ruta)
+
+        for hijo in nodo.hijos:
+            ruta = f"{ruta_actual}/{nodo.nombre}" if ruta_actual else nodo.nombre
+            self.mostrar_rutas_categorias(hijo, ruta, nivel + 1, rutas_con_indices)
+
+        return rutas_con_indices
+
     def asignar_tarea_a_categoria(self):
         """
-        Asigna una tarea a una categoria por su ID y ruta
+        Asigna una tarea a una categoria por su ID seleccionando de una lista.
         """
         try:
             id_tarea = int(input(f"{COLOR_MAGENTA}ID de la tarea: {STYLE_RESET_ALL}"))
@@ -311,16 +339,32 @@ class Aplicacion:
                 return
 
             print(f"{COLOR_YELLOW}Categorias disponibles:{STYLE_RESET_ALL}")
-            self.mostrar_rutas_categorias(self.raiz)
-            ruta = input(f"{COLOR_MAGENTA}Ruta de la categoria: {STYLE_RESET_ALL}").strip()
+            rutas_con_indices = self.mostrar_rutas_categorias(self.raiz)
 
-            nodo = self.raiz.buscar_subnodo(ruta)
+            if not rutas_con_indices:
+                print(f"{COLOR_YELLOW}No hay categorías disponibles.{STYLE_RESET_ALL}")
+                return
+
+            while True:
+                try:
+                    seleccion = int(input(f"{COLOR_MAGENTA}Selecciona el número de la categoría: {STYLE_RESET_ALL}"))
+                    if 1 <= seleccion <= len(rutas_con_indices):
+                        ruta_seleccionada = rutas_con_indices[seleccion - 1]
+                        break
+                    else:
+                        print(MENSAJE_OPCION_INVALIDA)
+                except ValueError:
+                    print(MENSAJE_OPCION_INVALIDA)
+
+            nodo = self.raiz.buscar_subnodo(ruta_seleccionada)
+
             if nodo:
                 tarea = self.gestor.tareas_dict[id_tarea]
                 nodo.agregar_tarea(tarea)
                 print(MENSAJE_TAREA_ASIGNADA_CATEGORIA)
             else:
                 print(MENSAJE_RUTA_NO_ENCONTRADA)
+
         except ValueError:
             print(MENSAJE_ID_INVALIDO)
 
