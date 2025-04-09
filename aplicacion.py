@@ -315,9 +315,15 @@ class Aplicacion:
             rutas_con_indices = []
 
         if nivel > 0:
-            ruta = f"{ruta_actual}/{nodo.nombre}" if ruta_actual else nodo.nombre
-            print(f"{len(rutas_con_indices) + 1}. {'  ' * nivel}- {COLOR_BLUE}{ruta}{STYLE_RESET_ALL}")
-            rutas_con_indices.append(ruta)
+            ruta_mostrar = f"{ruta_actual}/{nodo.nombre}" if ruta_actual else nodo.nombre
+            ruta_guardar = f"{ruta_actual}/{nodo.nombre}" if ruta_actual else nodo.nombre
+            if ruta_guardar.startswith(f"{self.raiz.nombre}/"):
+                ruta_guardar = ruta_guardar[len(f"{self.raiz.nombre}/"):]
+            elif ruta_guardar == self.raiz.nombre:
+                ruta_guardar = ""
+
+            print(f"{len(rutas_con_indices) + 1}. {'  ' * nivel}- {COLOR_BLUE}{ruta_mostrar}{STYLE_RESET_ALL}")
+            rutas_con_indices.append(ruta_guardar)
 
         for hijo in nodo.hijos:
             ruta = f"{ruta_actual}/{nodo.nombre}" if ruta_actual else nodo.nombre
@@ -347,7 +353,7 @@ class Aplicacion:
 
             while True:
                 try:
-                    seleccion = int(input(f"{COLOR_MAGENTA}Selecciona el número de la categoría: {STYLE_RESET_ALL}"))
+                    seleccion = int(input(f"{COLOR_MAGENTA}Pulsa el número de la categoría a la que quieres asignar la tarea y luego Enter: {STYLE_RESET_ALL}"))
                     if 1 <= seleccion <= len(rutas_con_indices):
                         ruta_seleccionada = rutas_con_indices[seleccion - 1]
                         break
@@ -367,22 +373,6 @@ class Aplicacion:
 
         except ValueError:
             print(MENSAJE_ID_INVALIDO)
-
-    def mostrar_rutas_categorias(self, nodo, ruta_actual="", nivel=0):
-        """
-        Muestra las rutas de las categorias disponibles
-
-        Args:
-            nodo (Nodo): El nodo actual a mostrar
-            ruta_actual (str): Ruta acumulada hasta este nodo
-            nivel (int): Nivel de profundidad en el arbol
-        """
-        if nivel > 0:
-            ruta = f"{ruta_actual}/{nodo.nombre}" if ruta_actual else nodo.nombre
-            print(f"{'  ' * nivel}- {COLOR_BLUE}{ruta}{STYLE_RESET_ALL}")
-        for hijo in nodo.hijos:
-            ruta = f"{ruta_actual}/{nodo.nombre}" if ruta_actual else nodo.nombre
-            self.mostrar_rutas_categorias(hijo, ruta, nivel + 1)
 
 if __name__ == "__main__":
     app = Aplicacion()
