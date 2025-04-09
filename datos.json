@@ -13,27 +13,12 @@
             "descripcion": "Trabajo final",
             "prioridad": "ALTA",
             "fecha_vencimiento": "2025-04-06"
-        },
-        {
-            "id": 4,
-            "titulo": "Estudiar para el examen",
-            "descripcion": "Repasar listas, pilas, colas y nodos",
-            "prioridad": "CRITICA",
-            "fecha_vencimiento": "2025-04-09"
         }
     ],
     "proximo_id": 5,
     "arbol": {
         "nombre": "Raiz",
-        "tareas": [
-            {
-                "id": 4,
-                "titulo": "Estudiar para el examen",
-                "descripcion": "Repasar listas, pilas, colas y nodos",
-                "prioridad": "CRITICA",
-                "fecha_vencimiento": "2025-04-09"
-            }
-        ],
+        "tareas": [],
         "hijos": [
             {
                 "nombre": "Trabajo",
@@ -44,11 +29,11 @@
                 "nombre": "Universidad",
                 "tareas": [
                     {
-                        "id": 4,
-                        "titulo": "Estudiar para el examen",
-                        "descripcion": "Repasar listas, pilas, colas y nodos",
+                        "id": 2,
+                        "titulo": "Trabajo final",
+                        "descripcion": "Realizar el trabajo antes del lunes",
                         "prioridad": "CRITICA",
-                        "fecha_vencimiento": "2025-04-09"
+                        "fecha_vencimiento": "2025-12-27"
                     }
                 ],
                 "hijos": []
